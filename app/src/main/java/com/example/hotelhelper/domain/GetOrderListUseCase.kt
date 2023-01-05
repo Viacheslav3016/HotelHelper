@@ -1,9 +1,10 @@
 package com.example.hotelhelper.domain
 
+import androidx.lifecycle.LiveData
 import com.example.hotelhelper.domain.repository.OrderListRepository
 
 class GetOrderListUseCase(private val repository: OrderListRepository) {
-    fun getListOrder():List<HotelItem>{
+    fun getListOrder():LiveData<List<HotelItem>>{
         return repository.getListOrder()
     }
 
