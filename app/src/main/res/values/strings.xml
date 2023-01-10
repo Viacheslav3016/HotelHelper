@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HotelHelper</string>
+    <string name="discriptionFloatButton">add new orderItem</string>
 </resources>

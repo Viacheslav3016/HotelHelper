@@ -4,11 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="6dp"
-    android:layout_marginTop="6dp"
-    android:layout_marginEnd="6dp"
-    android:layout_marginBottom="6dp"
     app:cardCornerRadius="8dp"
+    android:layout_margin="3dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
@@ -33,9 +30,7 @@
             android:id="@+id/TextViewSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:visibility="gone"
-            tools:visibility="visible"
+            android:layout_marginEnd="65dp"
             android:textSize="25sp"
             android:textStyle="bold"
             tools:text="XL" />

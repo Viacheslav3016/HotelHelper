@@ -7,12 +7,12 @@ import com.example.hotelhelper.domain.repository.OrderListRepository
 
 object OrderListRepIml : OrderListRepository {
     private val listOrderLD = MutableLiveData<List<HotelItem>>()
-    private val listOrder = mutableListOf<HotelItem>()
+    private val listOrder = sortedSetOf<HotelItem>({o1,o2 -> o1.id.compareTo(o2.id)})
     private var autoIncrement = 0
 
     init {
         for (i in 0 until 10) {
-            val item = HotelItem("Name $i", i, "XL", false)
+            val item = HotelItem("name", i, "S", true)
             addHotelOrder(item)
         }
     }
@@ -25,7 +25,7 @@ object OrderListRepIml : OrderListRepository {
     }
 
     override fun addHotelOrder(hotelItem: HotelItem) {
-        if (hotelItem.id == HotelItem.UNDEFIND_ID){
+        if (hotelItem.id == HotelItem.UNDEFINED_ID){
             hotelItem.id = autoIncrement++
         }
         listOrder.add(hotelItem)
