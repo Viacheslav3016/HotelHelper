@@ -76,6 +76,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
     interface OnHotelItemClickListener{
         fun onHotelItemClick(hotelItem: HotelItem)
     }
+
         companion object {
             const val STATUS_ENABLED = 0
             const val STATUS_DISABLED = 1
