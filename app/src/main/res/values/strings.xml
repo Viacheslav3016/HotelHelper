@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">HotelHelper</string>
     <string name="discriptionFloatButton">add new orderItem</string>
+    <string name="Name">Name</string>
+    <string name="Size">Size |S/M/L/XL/XXL|</string>
+    <string name="count">Count</string>
+    <string name="button_save">Сохранить</string>
 </resources>
