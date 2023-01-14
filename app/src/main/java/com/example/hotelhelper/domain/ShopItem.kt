@@ -1,6 +1,6 @@
 package com.example.hotelhelper.domain
 
-data class HotelItem(
+data class ShopItem(
     val name:String,
     val count:Int,
     val size:String,
