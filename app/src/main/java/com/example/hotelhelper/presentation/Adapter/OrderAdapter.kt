@@ -3,15 +3,15 @@ package com.example.hotelhelper.presentation.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.hotelhelper.R
-import com.example.hotelhelper.domain.HotelItem
+import com.example.hotelhelper.domain.ShopItem
 import com.example.hotelhelper.presentation.OrderViewHolder
 import com.example.hotelhelper.presentation.Utils.OrderItemDiff
 
 class OrderAdapter :
-    androidx.recyclerview.widget.ListAdapter<HotelItem, OrderViewHolder>(OrderItemDiff()) {
+    androidx.recyclerview.widget.ListAdapter<ShopItem, OrderViewHolder>(OrderItemDiff()) {
 
     var onHotelItemLongClickListener: OnHotelItemLongClickListener? = null
-    var onHotelItemClickListener: OnHotelItemClickListener? = null
+    var onHotelItemClickListener: ((ShopItem) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val layout = when (viewType) {
             STATUS_ENABLED -> R.layout.item_order_enabled
@@ -36,7 +36,7 @@ class OrderAdapter :
             true
         }
         holder.itemView.setOnClickListener {
-            onHotelItemClickListener?.onHotelItemClick(orderItem)
+            onHotelItemClickListener?.invoke(orderItem)
         }
         holder.tvName.text = orderItem.name
         holder.tvSize.text = orderItem.size
@@ -54,11 +54,11 @@ class OrderAdapter :
     }
 
     interface OnHotelItemLongClickListener {
-        fun onHotelItemLongClick(hotelItem: HotelItem)
+        fun onHotelItemLongClick(shopItem: ShopItem)
     }
 
     interface OnHotelItemClickListener {
-        fun onHotelItemClick(hotelItem: HotelItem)
+        fun onHotelItemClick(shopItem: ShopItem)
     }
 
     companion object {
