@@ -57,10 +57,6 @@ class OrderAdapter :
         fun onHotelItemLongClick(shopItem: ShopItem)
     }
 
-    interface OnHotelItemClickListener {
-        fun onHotelItemClick(shopItem: ShopItem)
-    }
-
     companion object {
         const val STATUS_ENABLED = 0
         const val STATUS_DISABLED = 1

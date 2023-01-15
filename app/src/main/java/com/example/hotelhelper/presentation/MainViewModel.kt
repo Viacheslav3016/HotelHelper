@@ -1,27 +1,25 @@
 package com.example.hotelhelper.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.hotelhelper.data.OrderListRepIml
-import com.example.hotelhelper.domain.DeleteHotelOrderUseCase
-import com.example.hotelhelper.domain.EditHotelOrderUseCase
+import com.example.hotelhelper.domain.DeleteShopOrderUseCase
+import com.example.hotelhelper.domain.EditShopOrderUseCase
 import com.example.hotelhelper.domain.GetOrderListUseCase
-import com.example.hotelhelper.domain.HotelItem
-import com.example.hotelhelper.domain.repository.OrderListRepository
+import com.example.hotelhelper.domain.ShopItem
 
 class MainViewModel:ViewModel() {
     private val repository = OrderListRepIml
-    private val editHotelOrderUseCase = EditHotelOrderUseCase(repository)
-    private val deleteHotelOrderUseCase = DeleteHotelOrderUseCase(repository)
+    private val editShopOrderUseCase = EditShopOrderUseCase(repository)
+    private val deleteShopOrderUseCase = DeleteShopOrderUseCase(repository)
     private val getOrderListUseCase = GetOrderListUseCase(repository)
      val orderList = getOrderListUseCase.getListOrder()
 
-    fun deleteOrder(hotelItem: HotelItem){
-        deleteHotelOrderUseCase.deleteOrderItem(hotelItem)
+    fun deleteOrder(shopItem: ShopItem){
+        deleteShopOrderUseCase.deleteOrderItem(shopItem)
     }
 
-    fun editStatusOrder(hotelItem: HotelItem){
-        val newitem = hotelItem.copy(status = !hotelItem.status)
-        editHotelOrderUseCase.editHotelOrder(newitem)
+    fun editStatusOrder(shopItem: ShopItem){
+        val newitem = shopItem.copy(status = !shopItem.status)
+        editShopOrderUseCase.editHotelOrder(newitem)
     }
 }

@@ -1,13 +1,11 @@
 package com.example.hotelhelper.presentation.Utils
 
-import android.telecom.Call
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DiffUtil.Callback
-import com.example.hotelhelper.domain.HotelItem
+import com.example.hotelhelper.domain.ShopItem
 
 class OrderListDiffCallBack(
-    val oldList:List<HotelItem>,
-    val newList:List<HotelItem>):DiffUtil.Callback() {
+    val oldList:List<ShopItem>,
+    val newList:List<ShopItem>):DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }

@@ -1,14 +1,14 @@
 package com.example.hotelhelper.presentation.Utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.hotelhelper.domain.HotelItem
+import com.example.hotelhelper.domain.ShopItem
 
-class OrderItemDiff:DiffUtil.ItemCallback<HotelItem>() {
-    override fun areItemsTheSame(oldItem: HotelItem, newItem: HotelItem): Boolean {
+class OrderItemDiff:DiffUtil.ItemCallback<ShopItem>() {
+    override fun areItemsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: HotelItem, newItem: HotelItem): Boolean {
+    override fun areContentsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {
         return oldItem==newItem
     }
 }
