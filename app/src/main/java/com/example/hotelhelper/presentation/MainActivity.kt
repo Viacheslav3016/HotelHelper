@@ -1,8 +1,9 @@
 package com.example.hotelhelper.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +16,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var orderAdapter: OrderAdapter
+    private var shop_Item_container: FragmentContainerView? = null
     private var TEG_MAIN_ACTIVITY: String = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        shop_Item_container = findViewById(R.id.shop_Item_container)
         settingRecyclerView()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.orderList.observe(this) {
@@ -27,9 +30,26 @@ class MainActivity : AppCompatActivity() {
         }
         val button = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         button.setOnClickListener {
-            val intent = OrderItemActivity.Companion.newIntentAdd(this)
-            startActivity(intent)
+            if (isOneTableRow()) {
+                val intent = OrderItemActivity.Companion.newIntentAdd(this)
+                startActivity(intent)
+            } else {
+                launchFragment(FragmentOrderItem.newInstanceAdd())
+            }
         }
+    }
+
+    private fun launchFragment(fragment: Fragment) {
+        supportFragmentManager.popBackStack()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.shop_Item_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun isOneTableRow(): Boolean {
+        return shop_Item_container == null
     }
 
     private fun settingRecyclerView() {
@@ -78,9 +98,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupOnItemClickListener() {
         orderAdapter.onHotelItemClickListener = {
-            Log.d(TEG_MAIN_ACTIVITY, it.toString())
-            val intent = OrderItemActivity.newIntentEdit(this, it.id)
-            startActivity(intent)
+            if (isOneTableRow()) {
+                val intent = OrderItemActivity.newIntentEdit(this, it.id)
+                startActivity(intent)
+            }else {
+                launchFragment(FragmentOrderItem.newInstanceEdit(it.id))
+            }
         }
     }
 
